@@ -1,4 +1,4 @@
-import { requestJson } from "./httpWrapper";
+import { requestJson } from "../httpWrapper.ts";
 
 export type ComponentDtoReceive = {
     id: string;

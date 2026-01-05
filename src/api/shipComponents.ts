@@ -1,4 +1,4 @@
-import {requestJson } from "./httpWrapper";
+import {requestJson } from "../httpWrapper.ts";
 
 export type ShipComponentDtoReceive = {
     id: string;
@@ -73,6 +73,16 @@ export async function updateShipComponentById(
     input: ShipComponentDtoSend
 ): Promise<ShipComponentDtoReceive> {
     return requestJson<ShipComponentDtoReceive>(`/api/ships/${shipId}/components/${componentId}`, {
+        method: "PUT",
+        body: input
+    });
+}
+
+export async function updateShipComponents(
+    shipId: string,
+    input: ShipComponentDtoSend[]
+): Promise<ShipComponentDtoReceive[]> {
+    return requestJson<ShipComponentDtoReceive[]>(`/api/ships/${shipId}/components`, {
         method: "PUT",
         body: input
     });

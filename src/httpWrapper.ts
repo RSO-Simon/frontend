@@ -71,5 +71,9 @@ export async function requestJson<T>(
         headers: { Accept: "application/json", ...(opts.headers ?? {}) },
     });
 
+    if (!text) {
+        return undefined as unknown as T; // for 204 / empty body
+    }
+
     return JSON.parse(text) as T;
 }

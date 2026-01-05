@@ -1,4 +1,4 @@
-import { requestText, requestJson } from "./httpWrapper";
+import { requestText, requestJson } from "../httpWrapper.ts";
 
 export async function getHello(): Promise<string> {
     return requestText("/api/ships/hello");
@@ -8,6 +8,9 @@ export async function getHello(): Promise<string> {
 
 export type ShipDtoReceive = {
     id: string;
+
+    //
+    ownerUserId: string;
 
     // Header info
     name: string;
@@ -31,6 +34,9 @@ export type ShipDtoReceive = {
     // Defenses
     damageImmunities: string[];
     conditionImmunities: string[];
+
+    // Actions
+    actionNumber: number;
 };
 
 
@@ -70,8 +76,8 @@ export async function createShip(
 }
 
 export async function getShips(
-): Promise<ShipDtoReceive> {
-    return requestJson<ShipDtoReceive>("/api/ships", {
+): Promise<ShipDtoReceive[]> {
+    return requestJson<ShipDtoReceive[]>("/api/ships", {
         method: "GET",
     });
 }

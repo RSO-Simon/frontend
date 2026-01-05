@@ -1,0 +1,319 @@
+.shipsPage {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    margin: 0 24px
+}
+
+.shipSelector {
+    flex: 0 0 200px;
+    width: 300px;
+
+}
+
+.shipSelectorTitle {
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0px 20%;
+    border: 2px solid black;
+    transform: translateY(30%);
+    background-color: #f7f6f2;
+
+
+}
+.shipSelectorList {
+    border: 1px solid black;
+}
+
+.shipCard {
+    border: 1px solid #111;
+    padding: 5px 10px;
+
+}
+.shipCard__meta {
+    padding: 0px 10px;
+}
+
+.shipCard__actions {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+
+.shipCard__Button {
+    padding: 0 10px;
+    background-color: #d1d1d1;
+
+}
+
+.SheetWrapper{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.boatSheet {
+    display: block;
+    width: min(1200px, 100%);
+    /*margin: 24px auto;*/
+    padding: 18px;
+    border: 2px solid #111;
+    isolation: isolate;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+.header {
+
+    position: relative;
+    margin-bottom: 14px;
+
+}
+.headerWrapepr{
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+}
+.headerActions {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    flex: 1;
+    gap: 24px;
+
+}
+
+.header__Button {
+    background-color: #d1d1d1;
+
+}
+
+.titleBlock {
+    display: inline-block;
+    padding: 0px 10px;
+    border: 2px solid #111;
+}
+
+.title {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.1;
+    align-items: baseline;
+}
+
+.subtitle {
+    font-size: 14px;
+    margin-top: 2px;
+    align-items: baseline;
+
+}
+
+.statStrip {
+    border: 2px solid #111;
+    padding: 14px;
+    margin-bottom: 18px;
+}
+
+.statStripInner {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 14px;
+    align-items: start;
+    justify-items: center;
+}
+
+.statCard {
+    width: 100%;
+    max-width: 135px;
+    border: 2px solid #111;
+    border-radius: 16px;
+    padding: 10px 10px 0;
+    text-align: center;
+    position: relative;
+}
+
+.statLabel {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+
+}
+
+.statMod {
+    margin: 10px auto 0;
+    width: 72px;
+    height: 48px;
+    border: 2px solid #111;
+    border-radius: 10px;
+    display: grid;
+    place-items: center;
+    font-size: 18px;
+    font-weight: 700;
+
+}
+
+.statScore {
+    width: 56px;
+    height: 56px;
+    border: 2px solid #111;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: 18px;
+    font-weight: 700;
+    margin: 10px auto -18px;
+    background-color: #f7f6f2;
+}
+
+.midRow {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 22px;
+    margin-bottom: 22px;
+}
+
+.panel {
+    border: 2px solid #111;
+    padding: 16px 16px 34px;
+    position: relative;
+    min-height: 360px;
+}
+
+.panelBody {
+    display: grid;
+    gap: 18px;
+}
+
+.section {
+    position: relative;
+    padding-top: 16px;
+
+}
+
+.sectionTag {
+    position: absolute;
+    top: 5px;
+    left: 10px;
+    transform: translateY(-50%);
+    padding: 6px 10px;
+    border: 2px solid #111;
+    font-weight: 700;
+    background-color: #f7f6f2;
+}
+
+.sectionBox {
+    border: 2px solid #111;
+    min-height: 62px;
+    padding: 10px;
+}
+
+.sectionLarge .sectionBoxLarge {
+    min-height: 180px;
+}
+
+.panelFooterTag {
+    position: absolute;
+    left: 50%;
+    bottom: -18px;
+    transform: translateX(-50%);
+    padding: 8px 14px;
+    border: 2px solid #111;
+    font-weight: 700;
+    background-color: #f7f6f2;
+}
+
+.componentsBox {
+    /* EMPTY box area you will fill later */
+    height: 100%;
+    min-height: 310px;
+}
+
+.attunementPanel {
+    min-height: 340px;
+    background-color: #f7f6f2;
+}
+
+.attunementBox {
+    /* EMPTY box area you will fill later */
+    height: 100%;
+    min-height: 290px;
+
+}
+
+.borderlessInput {
+    border: none;
+    background-color: #f7f6f2;
+}
+
+.numericalInput {
+    width: auto;
+    padding: 0;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    text-align: center;
+    font-size: 1.05em;
+}
+
+.sectionBoxInner{
+    display: flex;
+    align-items: baseline; /* or center */
+}
+.textInput{
+    flex: 1;
+    margin-left: 8px;
+}
+.delete {
+    color: #cf1717;
+}
+
+.componentSelector {
+    flex: 0 0 200px;
+}
+
+.componentSelectorTitle {
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0px 5%;
+    border: 2px solid black;
+    transform: translateY(30%);
+    background-color: #f7f6f2;
+}
+
+.componentSelectorList {
+    border: 1px solid black;
+}
+
+.componentCard {
+    border: 1px solid #111;
+    padding: 5px 10px;
+    background-color: #f7f6f2;
+
+}
+
+.componentCard__title {
+    padding: 0px 10px;
+}
+
+.componentCard__actions {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+
+.componentCard__Button {
+    padding: 0 10px;
+    background-color: #d1d1d1;
+
+}
+
+/* Small screens */
+@media (max-width: 820px) {
+    .statStripInner {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .midRow {
+        grid-template-columns: 1fr;
+    }
+}
