@@ -10,6 +10,7 @@ declare global {
 export function GoogleLoginButton() {
     useEffect(() => {
         if (!window.google) return;
+        console.log("GOOGLE CLIENT ID (len):", (import.meta.env.VITE_GOOGLE_CLIENT_ID ?? "").length);
 
         window.google.accounts.id.initialize({
             client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
