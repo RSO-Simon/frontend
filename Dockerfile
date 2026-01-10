@@ -11,6 +11,7 @@ COPY . .
 ARG VITE_GOOGLE_CLIENT_ID
 RUN test -n "$VITE_GOOGLE_CLIENT_ID" || (echo "Missing VITE_GOOGLE_CLIENT_ID build arg" && exit 1)
 RUN printf "VITE_GOOGLE_CLIENT_ID=%s\n" "$VITE_GOOGLE_CLIENT_ID" > .env.production
+RUN cat .env.production
 
 
 RUN npm run build
