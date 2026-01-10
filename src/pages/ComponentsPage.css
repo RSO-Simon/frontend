@@ -2,7 +2,7 @@
 .cpCard {
     border: 2px solid #111;
     background: #f7f6f2;
-    border-radius: 12px;
+    border-radius: 0;
     overflow: hidden;
 }
 
