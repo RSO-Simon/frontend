@@ -11,7 +11,6 @@ type Stat = {
 };
 
 
-
 export default function ShipsPage() {
     const [addedComponents, setAddedComponents] = useState<ShipComponentDtoReceive[]>([]);
     const [form, setForm] = useState({
