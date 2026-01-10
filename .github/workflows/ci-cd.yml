@@ -72,7 +72,6 @@ jobs:
           build-args: |
             VITE_GOOGLE_CLIENT_ID=${{ secrets.VITE_GOOGLE_CLIENT_ID }}
 
-
       - name: Trigger infra workflow (deploy-frontend)
         env:
           INFRA_REPO_TOKEN: ${{ secrets.INFRA_REPO_TOKEN }}
