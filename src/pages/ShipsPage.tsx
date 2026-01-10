@@ -1,5 +1,5 @@
 import "./ShipsPage.css";
-import React, {type ChangeEvent, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import { ComponentsTabs } from "./ComponentsTabs";
 import {getShipComponents, type ShipComponentDtoReceive, updateShipComponents} from "../api/shipComponents";
 import {createShip, deleteShipById, getShips, updateShipById, type ShipDtoReceive} from "../api/ships";
@@ -59,7 +59,7 @@ export default function ShipsPage() {
         CHARISMA: "charisma",
     };
 
-    const {data: componentData, status: componentStatus, error: componentError, load: loadComponents} = getComponentList();
+    const {data: componentData, status: componentStatus, error: _componentError, load: loadComponents} = getComponentList();
 
     // Helpers stats
     function modFromScore(score: number): string {
@@ -182,12 +182,12 @@ export default function ShipsPage() {
 
     // Load
     const [status, setStatus] = useState<"idle" | "loading" | "ok" | "error">("idle");
-    const [error, setError] = useState<string>("");
+    const [_error, setError] = useState<string>("");
     const [data, setData] = useState<ShipDtoReceive[]>([]);
 
     // Create
-    const [createStatus, setCreateStatus] = useState<"idle" | "saving" | "updating" | "error">("idle");
-    const [createError, setCreateError] = useState<string>("");
+    const [_createStatus, setCreateStatus] = useState<"idle" | "saving" | "updating" | "error">("idle");
+    const [_createError, setCreateError] = useState<string>("");
 
     // Edit
     const [editingId, setEditingId] = useState<string | null>(null);
