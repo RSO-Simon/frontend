@@ -71,7 +71,6 @@ jobs:
           tags: ${{ steps.prep.outputs.tags }}
           build-args: |
             VITE_GOOGLE_CLIENT_ID=${{ secrets.VITE_GOOGLE_CLIENT_ID }}
-      
 
       - name: Trigger infra workflow (deploy-frontend)
         env:
