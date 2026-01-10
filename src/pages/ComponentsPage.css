@@ -1,37 +1,98 @@
-/*.componentList {*/
-/*    display: grid;*/
-/*    gap: 12px;*/
-/*}*/
+/* Match the existing ComponentsTabs look (bold border, off-white bg) */
+.cpCard {
+    border: 2px solid #111;
+    background: #f7f6f2;
+    border-radius: 12px;
+    overflow: hidden;
+}
 
-/*.componentCard {*/
-/*    padding: 12px;*/
-/*    border-radius: 8px;*/
-/*    background: #1a1a1a;*/
-/*    border: 1px solid #333;*/
-/*}*/
+.cpCardHeader {
+    padding: 10px 12px;
+    border-bottom: 2px solid #111;
+}
 
-/*.componentCard__title {*/
-/*    display: flex;*/
-/*    gap: 6px;*/
-/*    align-items: baseline;*/
-/*}*/
+.cpCardTitle {
+    font-size: 16px;
+    font-weight: 800;
+}
 
-/*.componentCard__meta {*/
-/*    margin-top: 4px;*/
-/*    opacity: 0.85;*/
-/*    font-size: 0.9rem;*/
-/*    margin-left: 20px;*/
+.cpForm {
+    padding: 12px;
+    display: grid;
+    gap: 12px;
+    max-width: 560px;
+}
 
-/*}*/
+.cpField {
+    display: grid;
+    gap: 6px;
+}
 
-/*.componentCard__actions {*/
-/*    margin-top: 10px;*/
-/*    display: flex;*/
-/*    gap: 8px;*/
-/*    margin-left: 20px;*/
-/*}*/
-/*.componentCard__Button{*/
-/*    background: rgba(62, 62, 62, 0.98);*/
-/*    border: 1px solid #8c8b8b*/
+.cpLabel {
+    font-weight: 700;
+}
 
-/*}*/
+.cpInput,
+.cpTextarea {
+    width: 100%;
+    border: 2px solid #111;
+    background: #f7f6f2;
+    color: #000;
+    padding: 8px 10px;
+    border-radius: 10px;
+    font: inherit;
+    outline: none;
+}
+
+.cpInput:focus,
+.cpTextarea:focus {
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.12);
+}
+
+.cpTextarea {
+    min-height: 90px;
+    resize: vertical;
+}
+
+.cpGrid3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.cpActions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding-top: 4px;
+}
+
+.cpBtnPrimary,
+.cpBtnGhost {
+    border: 2px solid #111;
+    background: #f7f6f2;
+    color: #000;
+    padding: 6px 10px;
+    border-radius: 10px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.cpBtnPrimary {
+    background: #000;
+    color: #f7f6f2;
+}
+
+.cpBtnPrimary:disabled,
+.cpBtnGhost:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.cpError {
+    padding: 12px;
+    border-radius: 10px;
+    background: #111;
+    color: #ddd;
+    overflow: auto;
+}

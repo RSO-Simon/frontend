@@ -141,58 +141,102 @@ export default function ComponentsPage() {
                 </pre>
                 )}
                 <div style={{display: "flex", gap: 32, alignItems: "flex-start"}}>
-                    {/* LEFT: editor */}
+                    {/* LEFT: form */}
                     <div style={{flex: 1}}>
-                        <h3>{editingId ? `Editing component: ${editingId}` : "Create component"}</h3>
-                        <form onSubmit={onCreate} style={{display: "grid", gap: 8, maxWidth: 520, marginBottom: 16}}>
-                            <input
-                                placeholder="Name"
-                                value={form.name}
-                                onChange={(e) => setForm((f) => ({...f, name: e.target.value}))}
-                            />
-                            <input
-                                placeholder="Type"
-                                value={form.type}
-                                onChange={(e) => setForm((f) => ({...f, type: e.target.value}))}
-                            />
-                            <input
-                                placeholder="Health"
-                                type="number"
-                                value={form.health}
-                                onChange={(e) => setForm((f) => ({...f, health: Number(e.target.value)}))}
-                            />
-                            <input
-                                placeholder="Damage Threshold"
-                                type="number"
-                                value={form.damageThreshold}
-                                onChange={(e) => setForm((f) => ({...f, damageThreshold: Number(e.target.value)}))}
-                            />
-                            <input
-                                placeholder="Armor Class"
-                                type="number"
-                                value={form.armorClass}
-                                onChange={(e) => setForm((f) => ({...f, armorClass: Number(e.target.value)}))}
-                            />
-                            <textarea
-                                placeholder="Description"
-                                value={form.description}
-                                onChange={(e) => setForm((f) => ({...f, description: e.target.value}))}
-                            />
+                        <div className="cpCard">
+                            <div className="cpCardHeader">
+                                <div className="cpCardTitle">
+                                    {editingId ? "Edit component" : "Create component"}
+                                </div>
+                            </div>
 
-                            <button type="submit" disabled={actionStatus !== "idle"}>
-                                {actionStatus === "saving" ? "Saving..." : editingId ? "Update" : "Create"}
-                            </button>
-                            {editingId && (
-                                <button type="button" onClick={cancelEdit} disabled={actionStatus !== "idle"}>
-                                    Cancel edit
-                                </button>
-                            )}
-                            {createStatus === "error" && (
-                                <pre style={{padding: 12, borderRadius: 8, background: "#111", color: "#ddd"}}>
-                                {createError}
-                            </pre>
-                            )}
-                        </form>
+                            <form onSubmit={onCreate} className="cpForm">
+                                <div className="cpField">
+                                    <label className="cpLabel">Name</label>
+                                    <input
+                                        className="cpInput"
+                                        placeholder="Ballista"
+                                        value={form.name}
+                                        onChange={(e) => setForm((f) => ({...f, name: e.target.value}))}
+                                    />
+                                </div>
+
+                                <div className="cpField">
+                                    <label className="cpLabel">Type</label>
+                                    <input
+                                        className="cpInput"
+                                        placeholder="WEAPON"
+                                        value={form.type}
+                                        onChange={(e) => setForm((f) => ({...f, type: e.target.value}))}
+                                    />
+                                </div>
+
+                                <div className="cpGrid3">
+                                    <div className="cpField">
+                                        <label className="cpLabel">Health</label>
+                                        <input
+                                            className="cpInput"
+                                            type="number"
+                                            value={form.health}
+                                            onChange={(e) => setForm((f) => ({...f, health: Number(e.target.value)}))}
+                                        />
+                                    </div>
+
+                                    <div className="cpField">
+                                        <label className="cpLabel">DT</label>
+                                        <input
+                                            className="cpInput"
+                                            type="number"
+                                            value={form.damageThreshold}
+                                            onChange={(e) =>
+                                                setForm((f) => ({...f, damageThreshold: Number(e.target.value)}))
+                                            }
+                                        />
+                                    </div>
+
+                                    <div className="cpField">
+                                        <label className="cpLabel">AC</label>
+                                        <input
+                                            className="cpInput"
+                                            type="number"
+                                            value={form.armorClass}
+                                            onChange={(e) =>
+                                                setForm((f) => ({...f, armorClass: Number(e.target.value)}))
+                                            }
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="cpField">
+                                    <label className="cpLabel">Description</label>
+                                    <textarea
+                                        className="cpTextarea"
+                                        placeholder="A heavy torsion-powered siege engine mounted on the deck."
+                                        value={form.description}
+                                        onChange={(e) => setForm((f) => ({...f, description: e.target.value}))}
+                                    />
+                                </div>
+
+                                <div className="cpActions">
+                                    <button className="cpBtnPrimary" type="submit" disabled={actionStatus !== "idle"}>
+                                        {actionStatus === "saving" ? "Saving..." : editingId ? "Update" : "Create"}
+                                    </button>
+
+                                    {editingId && (
+                                        <button
+                                            className="cpBtnGhost"
+                                            type="button"
+                                            onClick={cancelEdit}
+                                            disabled={actionStatus !== "idle"}
+                                        >
+                                            Cancel
+                                        </button>
+                                    )}
+                                </div>
+
+                                {createStatus === "error" && <pre className="cpError">{createError}</pre>}
+                            </form>
+                        </div>
                     </div>
                     <div style={{width: 360}}>
                         <h3>Existing components</h3>
@@ -200,26 +244,28 @@ export default function ComponentsPage() {
                         {status === "ok" && data.length === 0 && <div>No components found.</div>}
                         {status === "ok" && data.length > 0 && (
                             <div className="componentList">
-                                    {data.map((c) => (
-                                        <div key={c.id} className="componentCard">
-                                            <div className="componentCard__title">
-                                                <strong>{c.name}</strong> <span>({c.type})</span>
-                                            </div>
-                                            <div className="componentCard__meta">
-                                                HP {c.health}, AC {c.armorClass}, DT {c.damageThreshold}
-                                            </div>
-                                            <div className="componentCard__actions">
-                                                <button type={"button"} className={"componentCard__Button"} disabled={actionStatus !== "idle"}
-                                                        onClick={() => onEdit(c)}>
-                                                    Edit
-                                                </button>
-                                                <button type={"button"} className={"componentCard__Button"} disabled={actionStatus !== "idle"}
-                                                        onClick={() => onDelete(c.id)}>
-                                                    Delete
-                                                </button>
-                                            </div>
+                                {data.map((c) => (
+                                    <div key={c.id} className="componentCard">
+                                        <div className="componentCard__title">
+                                            <strong>{c.name}</strong> <span>({c.type})</span>
                                         </div>
-                                    ))}
+                                        <div className="componentCard__meta">
+                                            HP {c.health}, AC {c.armorClass}, DT {c.damageThreshold}
+                                        </div>
+                                        <div className="componentCard__actions">
+                                            <button type={"button"} className={"componentCard__Button"}
+                                                    disabled={actionStatus !== "idle"}
+                                                    onClick={() => onEdit(c)}>
+                                                Edit
+                                            </button>
+                                            <button type={"button"} className={"componentCard__Button"}
+                                                    disabled={actionStatus !== "idle"}
+                                                    onClick={() => onDelete(c.id)}>
+                                                Delete
+                                            </button>
+                                        </div>
+                                    </div>
+                                ))}
                             </div>
                         )}
                     </div>
