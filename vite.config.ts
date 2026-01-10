@@ -2,13 +2,6 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
 
-
-export default defineConfig({
-  plugins: [react()],
-  resolve: {
-    dedupe: ["react", "react-dom"],
-  },
-  server: {
     // proxy: {
     //   "/api/ships": {
     //     target: "http://localhost:8081",
@@ -21,6 +14,13 @@ export default defineConfig({
     //     secure: false,
     //   },
     // },
+
+export default defineConfig({
+  plugins: [react()],
+  resolve: {
+    dedupe: ["react", "react-dom"],
+  },
+  server: {
     proxy: {
       "/api/ships": {
         target: "http://131.189.145.59",

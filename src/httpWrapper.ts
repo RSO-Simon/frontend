@@ -1,6 +1,6 @@
 export type HttpMethod = "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
 
-const API_BASE = import.meta.env.DEV ? "" : (import.meta.env.VITE_API_BASE_URL ?? "");
+// const API_BASE = import.meta.env.DEV ? "" : (import.meta.env.VITE_API_BASE_URL ?? "");
 
 function getToken(): string | null {
     return localStorage.getItem("app_jwt");
@@ -27,7 +27,8 @@ export async function requestText(
 ): Promise<string> {
     const token = getToken();
 
-    const res = await fetch(`${API_BASE}${path}`, {
+    const res = await fetch(path, {
+    // const res = await fetch(`${API_BASE}${path}`, {
         method: opts.method ?? "GET",
         headers: {
             Accept: "*/*",

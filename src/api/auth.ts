@@ -5,13 +5,13 @@ export type AuthResponse = {
     displayName: string;
 };
 
-const API_BASE = import.meta.env.DEV ? "" : (import.meta.env.VITE_API_BASE_URL ?? "");
+// const API_BASE = import.meta.env.DEV ? "" : (import.meta.env.VITE_API_BASE_URL ?? "");
 
 export async function loginWithGoogleCredential(
     credential: string
 ): Promise<AuthResponse> {
-    console.log(`${API_BASE}/api/auth/google`)
-    const res = await fetch(`${API_BASE}/api/auth/google`, {
+    const res = await fetch(`/api/auth/google`, {
+    // const res = await fetch(`${API_BASE}/api/auth/google`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ credential }),
