@@ -74,6 +74,7 @@ export function ComponentsTabs({
         <div className="ctRoot">
             <div className="ctTabs" role="tablist" aria-label="Components">
                 {components.map((c) => {
+                    console.log(components.map(x => x.id));
                     const active = c.id === selected?.id;
                     return (
                         <button

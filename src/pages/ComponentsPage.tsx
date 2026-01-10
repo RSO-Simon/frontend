@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import {createComponent, deleteComponentById, listComponentsForOwner, updateComponentById} from "../api/components.ts";
 import type { ComponentDtoReceive} from "../api/components.ts";
 
-export default function ComponentsPage({ currentUserId }: { currentUserId: string }) {
+export default function ComponentsPage() {
     // Create
     const [form, setForm] = useState({
         name: "",
@@ -80,7 +80,6 @@ export default function ComponentsPage({ currentUserId }: { currentUserId: strin
         setActionStatus("saving");
         setCreateError("")
         const dataToSend = {
-            ownerUserId: currentUserId,
             name: form.name.trim(),
             type: form.type.trim(),
             health: Number(form.health),

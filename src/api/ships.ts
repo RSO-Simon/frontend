@@ -1,15 +1,10 @@
-import { requestText, requestJson } from "../httpWrapper.ts";
-
-export async function getHello(): Promise<string> {
-    return requestText("/api/ships/hello");
-}
+import { requestJson } from "../httpWrapper.ts";
 
 // Template examples you will reuse for other endpoints:
 
 export type ShipDtoReceive = {
     id: string;
 
-    //
     ownerUserId: string;
 
     // Header info
@@ -69,7 +64,7 @@ export type ShipDtoSend = {
 export async function createShip(
     input: ShipDtoSend
 ): Promise<ShipDtoReceive> {
-    return requestJson<ShipDtoReceive>("/api/ships", {
+    return requestJson<ShipDtoReceive>("/api/ships/", {
         method: "POST",
         body: input
     });
@@ -77,7 +72,7 @@ export async function createShip(
 
 export async function getShips(
 ): Promise<ShipDtoReceive[]> {
-    return requestJson<ShipDtoReceive[]>("/api/ships", {
+    return requestJson<ShipDtoReceive[]>("/api/ships/", {
         method: "GET",
     });
 }

@@ -12,7 +12,7 @@ type Stat = {
 
 
 
-export default function ShipsPage({ currentUserId }: { currentUserId: string }) {
+export default function ShipsPage() {
     const [addedComponents, setAddedComponents] = useState<ShipComponentDtoReceive[]>([]);
     const [form, setForm] = useState({
         //Header
@@ -262,8 +262,10 @@ export default function ShipsPage({ currentUserId }: { currentUserId: string }) 
     async function onDelete() {
         if (editingId){
             setActionStatus("deleting");
+            console.log(`deleting: ${editingId}`);
             try {
                 await deleteShipById(editingId);
+                setEditingId(null)
                 await load();
             } catch (e: any) {
                 setError(e?.message ?? e);
@@ -280,8 +282,6 @@ export default function ShipsPage({ currentUserId }: { currentUserId: string }) 
         setActionStatus("saving");
         setCreateError("")
         const dataToSend = {
-            ownerUserId: currentUserId,
-
             name: form.name.trim(),
             size: form.size.trim(),
             length: Number(form.length),
@@ -310,7 +310,8 @@ export default function ShipsPage({ currentUserId }: { currentUserId: string }) 
 
         try {
             if (editingId) {
-                await updateShipById(editingId, dataToSend);
+                const createdShip:ShipDtoReceive = await updateShipById(editingId, dataToSend);
+                setEditingId(createdShip.id);
                 await updateShipComponents(editingId, addedComponents);
                 setEditingId(null);
             } else {

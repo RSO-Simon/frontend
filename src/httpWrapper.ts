@@ -1,32 +1,11 @@
 export type HttpMethod = "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
 
-//TEMPORARY
-const OWNER_USER_ID_KEY = "ownerUserId";
+const API_BASE = import.meta.env.DEV ? "" : (import.meta.env.VITE_API_BASE_URL ?? "");
 
-export function setOwnerUserId(id: string) {
-    localStorage.setItem(OWNER_USER_ID_KEY, id);
+function getToken(): string | null {
+    return localStorage.getItem("app_jwt");
 }
 
-export function getOwnerUserId(): string | null {
-    return localStorage.getItem(OWNER_USER_ID_KEY);
-}
-
-function withOwnerUserId(path: string): string {
-    const ownerUserId = getOwnerUserId();
-    if (!ownerUserId) return path;
-
-    // only apply to your API calls
-    if (!path.startsWith("/api/")) return path;
-
-    const url = new URL(path, window.location.origin);
-
-    // don't override if already provided explicitly
-    if (!url.searchParams.has("ownerUserId")) {
-        url.searchParams.set("ownerUserId", ownerUserId);
-    }
-
-    return url.pathname + url.search;
-}
 
 export class HttpError extends Error {
     status: number;
@@ -41,13 +20,19 @@ export class HttpError extends Error {
     }
 }
 
-export async function requestText(path: string, opts: { method?: HttpMethod; body?: unknown; headers?: Record<string, string> } = {}
+
+export async function requestText(
+    path: string,
+    opts: { method?: HttpMethod; body?: unknown; headers?: Record<string, string> } = {}
 ): Promise<string> {
-    const res = await fetch(withOwnerUserId(path), {
+    const token = getToken();
+
+    const res = await fetch(`${API_BASE}${path}`, {
         method: opts.method ?? "GET",
         headers: {
             Accept: "*/*",
             ...(opts.body !== undefined ? { "Content-Type": "application/json" } : {}),
+            ...(token ? {Authorization: `Bearer ${token}`} : {}),
             ...(opts.headers ?? {}),
         },
         body: opts.body !== undefined ? JSON.stringify(opts.body) : undefined,
@@ -56,16 +41,17 @@ export async function requestText(path: string, opts: { method?: HttpMethod; bod
     const text = await res.text();
 
     if (!res.ok) {
+        console.error("HTTP ERROR BODY:", text);
         throw new HttpError(res.status, res.statusText, text);
     }
 
     return text;
 }
-
 export async function requestJson<T>(
     path: string,
     opts: { method?: HttpMethod; body?: unknown; headers?: Record<string, string> } = {}
 ): Promise<T> {
+
     const text = await requestText(path, {
         ...opts,
         headers: { Accept: "application/json", ...(opts.headers ?? {}) },

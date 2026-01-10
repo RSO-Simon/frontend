@@ -13,8 +13,6 @@ export type ComponentDtoReceive = {
     description: string;
 };
 export type ComponentDtoSend = {
-    ownerUserId: string;
-
     name: string;
     type: string;
     health: number;
@@ -25,13 +23,15 @@ export type ComponentDtoSend = {
 
 export async function listComponentsForOwner(
 ): Promise<ComponentDtoReceive[]> {
-    return requestJson<ComponentDtoReceive[]>(`/api/components`);
+    return requestJson<ComponentDtoReceive[]>(`/api/components/`, {
+        method: "GET",
+    });
 }
 
 export async function createComponent(
     input: ComponentDtoSend
 ): Promise<ComponentDtoReceive> {
-    return requestJson<ComponentDtoReceive>(`/api/components`, {
+    return requestJson<ComponentDtoReceive>(`/api/components/`, {
         method: "POST",
         body: input
     });
