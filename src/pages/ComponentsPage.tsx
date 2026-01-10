@@ -238,36 +238,43 @@ export default function ComponentsPage() {
                             </form>
                         </div>
                     </div>
-                    <div style={{width: 360}}>
-                        <h3>Existing components</h3>
-                        {status === "loading" && <div>Loading…</div>}
-                        {status === "ok" && data.length === 0 && <div>No components found.</div>}
-                        {status === "ok" && data.length > 0 && (
-                            <div className="componentList">
+                    {/* RIGHT: existing components */}
+                    <div style={{ flex: 1 }}>
+                        <div className="cpCard">
+                            <div className="cpCardHeader">
+                                <div className="cpCardTitle">Existing components</div>
+                            </div>
+
+                            <div className="cpList">
                                 {data.map((c) => (
-                                    <div key={c.id} className="componentCard">
-                                        <div className="componentCard__title">
-                                            <strong>{c.name}</strong> <span>({c.type})</span>
+                                    <div key={c.id} className="cpItem">
+                                        <div>
+                                            <strong>{c.name}</strong> ({c.type})
                                         </div>
-                                        <div className="componentCard__meta">
+                                        <div className="cpMeta">
                                             HP {c.health}, AC {c.armorClass}, DT {c.damageThreshold}
                                         </div>
-                                        <div className="componentCard__actions">
-                                            <button type={"button"} className={"componentCard__Button"}
-                                                    disabled={actionStatus !== "idle"}
-                                                    onClick={() => onEdit(c)}>
+
+                                        <div className="cpActions">
+                                            <button
+                                                className="cpBtnGhost"
+                                                onClick={() => onEdit(c)}
+                                                disabled={actionStatus !== "idle"}
+                                            >
                                                 Edit
                                             </button>
-                                            <button type={"button"} className={"componentCard__Button"}
-                                                    disabled={actionStatus !== "idle"}
-                                                    onClick={() => onDelete(c.id)}>
+                                            <button
+                                                className="cpBtnGhost"
+                                                onClick={() => onDelete(c.id)}
+                                                disabled={actionStatus !== "idle"}
+                                            >
                                                 Delete
                                             </button>
                                         </div>
                                     </div>
                                 ))}
                             </div>
-                        )}
+                        </div>
                     </div>
                 </div>
             </div>
