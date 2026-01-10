@@ -16,7 +16,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0px 20%;
+    margin: 0 20%;
     border: 2px solid black;
     transform: translateY(30%);
     background-color: #f7f6f2;
@@ -33,7 +33,7 @@
 
 }
 .shipCard__meta {
-    padding: 0px 10px;
+    padding: 0 10px;
 }
 
 .shipCard__actions {
@@ -91,7 +91,7 @@
 
 .titleBlock {
     display: inline-block;
-    padding: 0px 10px;
+    padding: 0 10px;
     border: 2px solid #111;
 }
 
@@ -275,7 +275,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0px 5%;
+    margin: 0 5%;
     border: 2px solid black;
     transform: translateY(30%);
     background-color: #f7f6f2;
@@ -293,7 +293,7 @@
 }
 
 .componentCard__title {
-    padding: 0px 10px;
+    padding: 0 10px;
 }
 
 .componentCard__actions {
@@ -307,6 +307,76 @@
     background-color: #d1d1d1;
 
 }
+
+/* Side panels (Ship Library / Component Library) */
+.spSideCard {
+    flex: 0 0 280px;
+    border: 2px solid #111;
+    background: #f7f6f2;
+    border-radius: 0;
+    overflow: hidden;
+}
+
+.spSideHeader {
+    padding: 10px 12px;
+    border-bottom: 2px solid #111;
+}
+
+.spSideTitle {
+    font-size: 16px;
+    font-weight: 800;
+}
+
+.spSideBody {
+    padding: 12px;
+}
+
+.spSideList {
+    display: grid;
+    gap: 12px;
+}
+
+.spSideItem {
+    border: 2px solid #111;
+    background: #f7f6f2;
+    border-radius: 0;
+    padding: 10px;
+}
+
+.spSideItemTitle {
+    display: flex;
+    gap: 6px;
+    align-items: baseline;
+}
+
+.spSideItemMeta {
+    margin-top: 4px;
+    font-size: 0.9rem;
+    opacity: 0.85;
+}
+
+.spSideItemActions {
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.spBtn {
+    border: 2px solid #111;
+    background: rgba(255, 255, 255, 0.75);
+    color: #000;
+    padding: 6px 10px;
+    border-radius: 10px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.spBtn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+
 
 /* Small screens */
 @media (max-width: 820px) {

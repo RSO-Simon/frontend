@@ -341,36 +341,41 @@ export default function ShipsPage() {
     return (
         <div>
             <div className="shipsPage">
-                <div className="shipSelector">
-                    <div className="shipSelectorTitle">
-                        <h3 >Ship Library</h3>
+                <div className="spSideCard spSideLeft">
+                    <div className="spSideHeader">
+                        <div className="spSideTitle">Ship Library</div>
                     </div>
-                    {status === "loading" && <div>Loading…</div>}
-                    {status === "ok" && data.length === 0 && <div>No ships found.</div>}
-                    {status === "ok" && data.length > 0 && (
-                        <div className="shipSelectorList">
-                            {data.map((c) => (
-                                <div key={c.id} className="shipCard">
-                                    <div className="shipCard__title">
-                                        <strong>{c.name} </strong>
-                                    </div>
-                                    <div className="shipCard__meta">
-                                        {c.length} ft. by {c.width} ft. vehicle
-                                    </div>
-                                    <div className="shipCard__actions">
-                                        <button type={"button"} className={"shipCard__Button"}
-                                            disabled={actionStatus !== "idle"}
-                                            onClick={() => onEdit(c)}
-                                        >
-                                            Edit
-                                        </button>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
 
-                    )}
+                    <div className="spSideBody">
+                        {status === "loading" && <div>Loading…</div>}
+                        {status === "ok" && data.length === 0 && <div>No ships found.</div>}
+                        {status === "ok" && data.length > 0 && (
+                            <div className="spSideList">
+                                {data.map((c) => (
+                                    <div key={c.id} className="spSideItem">
+                                        <div className="spSideItemTitle">
+                                            <strong>{c.name}</strong>
+                                        </div>
 
+                                        <div className="spSideItemMeta">
+                                            {c.length} ft. by {c.width} ft. vehicle
+                                        </div>
+
+                                        <div className="spSideItemActions">
+                                            <button
+                                                type="button"
+                                                className="spBtn"
+                                                disabled={actionStatus !== "idle"}
+                                                onClick={() => onEdit(c)}
+                                            >
+                                                Edit
+                                            </button>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+                    </div>
                 </div>
                 <div className="SheetWrapper">
                     <div className="boatSheet">
@@ -400,7 +405,10 @@ export default function ShipsPage() {
                                                inputMode={"numeric"}
                                                placeholder="80"
                                                value={form.length}
-                                               onChange={(e) => setForm((f) => ({...f, length: Number(e.target.value)}))}
+                                               onChange={(e) => setForm((f) => ({
+                                                   ...f,
+                                                   length: Number(e.target.value)
+                                               }))}
                                         />
                                         ft. by
                                         <input className="borderlessInput numericalInput"
@@ -423,14 +431,14 @@ export default function ShipsPage() {
                                     New
                                 </button>
                                 <button type={"button"} className={"header__Button"}
-                                    disabled={actionStatus !== "idle"}
-                                    onClick={(e) => onCreate(e)}
+                                        disabled={actionStatus !== "idle"}
+                                        onClick={(e) => onCreate(e)}
                                 >
                                     Save
                                 </button>
                                 <button type={"button"} className={"header__Button delete"}
-                                    disabled={actionStatus !== "idle"}
-                                    onClick={() => onDelete()}
+                                        disabled={actionStatus !== "idle"}
+                                        onClick={() => onDelete()}
                                 >
                                     Delete
                                 </button>
@@ -442,20 +450,20 @@ export default function ShipsPage() {
                             <div className="statStripInner">
                                 {stats.map((s) => (
                                     <div key={s.label} className="statCard">
-                                    <div className="statLabel">{s.label}</div>
+                                        <div className="statLabel">{s.label}</div>
                                         <div className="statMod">{s.mod}</div>
-                                            <div className="statScore">
-                                                <input
-                                                    className="borderlessInput numericalInput statscoreInput"
-                                                    size={3}
-                                                    inputMode="numeric"
-                                                    value={form[STAT_KEY[s.label]]}
-                                                    onChange={(e) => setStatScore(STAT_KEY[s.label], e.target.value)}
-                                                />
-                                            </div>
+                                        <div className="statScore">
+                                            <input
+                                                className="borderlessInput numericalInput statscoreInput"
+                                                size={3}
+                                                inputMode="numeric"
+                                                value={form[STAT_KEY[s.label]]}
+                                                onChange={(e) => setStatScore(STAT_KEY[s.label], e.target.value)}
+                                            />
                                         </div>
-                                    ))}
-                                </div>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
 
                         {/* Middle row */}
@@ -571,41 +579,44 @@ export default function ShipsPage() {
 
                         {/* Bottom Attunement (EMPTY as requested) */}
                         <div className="panel attunementPanel">
-                            <div className="attunementBox" />
+                            <div className="attunementBox"/>
                             <div className="panelFooterTag">Attunement</div>
                         </div>
                     </div>
                 </div>
-                <div className="componentSelector">
-                    <div className="componentSelectorTitle">
-                        <h3>Component Library</h3>
+                <div className="spSideCard spSideRight">
+                    <div className="spSideHeader">
+                        <div className="spSideTitle">Component Library</div>
                     </div>
-                    {componentStatus === "loading" && <div>Loading…</div>}
-                    {componentStatus === "ok" && componentData.length === 0 && <div>No components found.</div>}
-                    {componentStatus === "ok" && componentData.length > 0 && (
-                        <div className="componentSelectorList">
-                            {componentData.map((c) => (
-                                <div key={c.id} className="componentCard">
-                                    <div className="componentCard__title">
-                                        <strong>{c.name} </strong>
-                                    </div>
-                                    <div className="componentCard__meta">
-                                        {/*{c.length} ft. by {c.width} ft. vehicle*/}
-                                    </div>
-                                    <div className="componentCard__actions">
-                                        <button type={"button"} className={"componentCard__Button"}
+
+                    <div className="spSideBody">
+                        {componentStatus === "loading" && <div>Loading…</div>}
+                        {componentStatus === "ok" && componentData.length === 0 && <div>No components found.</div>}
+                        {componentStatus === "ok" && componentData.length > 0 && (
+                            <div className="spSideList">
+                                {componentData.map((c) => (
+                                    <div key={c.id} className="spSideItem">
+                                        <div className="spSideItemTitle">
+                                            <strong>{c.name}</strong>
+                                        </div>
+
+                                        <div className="spSideItemActions">
+                                            <button
+                                                type="button"
+                                                className="spBtn"
                                                 disabled={actionStatus !== "idle"}
                                                 onClick={() => addShipComponent(c)}
-                                        >
-                                            Add
-                                        </button>
+                                            >
+                                                Add
+                                            </button>
+                                        </div>
                                     </div>
-                                </div>
-                            ))}
-                        </div>
-
-                    )}
+                                ))}
+                            </div>
+                        )}
+                    </div>
                 </div>
+
 
             </div>
         </div>
