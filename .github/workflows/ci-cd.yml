@@ -62,7 +62,14 @@ jobs:
           echo "${IMAGE}:latest" >> "$GITHUB_OUTPUT"
           echo "${IMAGE}:${GITHUB_SHA}" >> "$GITHUB_OUTPUT"
           echo "EOF" >> "$GITHUB_OUTPUT"
-
+      - name: Verify VITE_GOOGLE_CLIENT_ID is set
+        env:
+          VITE_GOOGLE_CLIENT_ID: ${{ secrets.VITE_GOOGLE_CLIENT_ID }}
+        run: |
+          if [ -z "$VITE_GOOGLE_CLIENT_ID" ]; then
+            echo "Secret VITE_GOOGLE_CLIENT_ID is empty/missing"
+            exit 1
+          fi
       - name: Build & push image
         uses: docker/build-push-action@v6
         with:
